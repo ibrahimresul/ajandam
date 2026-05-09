@@ -1,4 +1,6 @@
-/*KATEGORİ RENKLERİ*/
+/* =============================================
+   KATEGORİ RENKLERİ
+   ============================================= */
 :root {
     --event-color: #0984e3;
     --holiday-color: #00b894;
@@ -6,7 +8,9 @@
     --work-color: #f9ca24;
 }
 
-/*TEMALAR*/
+/* =============================================
+   TEMALAR
+   ============================================= */
 .theme-ocean {
     --main-color: #0984e3;
     --main-color-rgb: 9, 132, 227;
@@ -29,12 +33,13 @@
     background-color: #1e1e2f !important;
 }
 
-/*GENEL*/
-* { box-sizing: border-box; }
+/* =============================================
+   GENEL
+   ============================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +47,6 @@ body {
     background-size: cover;
     font-family: 'Segoe UI', sans-serif;
     transition: background 0.5s ease;
-    overflow: hidden;
 }
 
 .glass {
@@ -56,13 +60,16 @@ body {
 .theme-night .glass { background: rgba(30,30,47,0.88); color: #fff; }
 .theme-night .fc { color: #fff; }
 
-/*LAYOUT*/
+/* =============================================
+   LAYOUT — MASAÜSTÜ
+   ============================================= */
 .main-layout {
     display: grid;
     grid-template-columns: 370px 1fr;
     gap: 20px;
     width: 96%;
     height: 92vh;
+    padding: 10px 0;
 }
 
 .left-panel {
@@ -83,9 +90,11 @@ body {
     min-height: 0;
 }
 
-/*SOL PANEL İÇERİK */
-header h1 { margin: 0 0 4px; font-size: 1.6rem; }
-header p  { margin: 0 0 12px; font-size: 0.82rem; opacity: 0.7; }
+/* =============================================
+   SOL PANEL İÇERİK
+   ============================================= */
+header h1 { font-size: 1.6rem; margin-bottom: 4px; }
+header p  { font-size: 0.82rem; opacity: 0.7; margin-bottom: 12px; }
 
 .input-row { margin-bottom: 10px; }
 .input-row > label {
@@ -169,7 +178,9 @@ select {
 #todo-list li small { opacity: 0.65; font-size: 0.78rem; }
 .theme-night #todo-list li { background: #2d3436; color: white; }
 
-/*AYARLAR & ADMİN BUTONLARI*/
+/* =============================================
+   AYARLAR & ADMİN BUTONLARI
+   ============================================= */
 .settings-btn, .admin-btn {
     position: fixed;
     width: 44px;
@@ -199,8 +210,9 @@ select {
     z-index: 1999;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
-.settings-panel h3 { margin: 0 0 10px; font-size: 0.9rem; }
+.settings-panel h3 { font-size: 0.9rem; margin-bottom: 10px; }
 .settings-panel.active { display: block; }
+
 .t-btn {
     display: block;
     width: 100%;
@@ -218,7 +230,31 @@ select {
 .btn-sunset { background: #e17055; }
 .btn-night  { background: #6c5ce7; }
 
-/*ADMİN MODAL*/
+/* =============================================
+   MOBİL ALT PANEL BUTONU
+   ============================================= */
+#mobile-panel-toggle {
+    display: none;
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--main-color);
+    color: white;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 2000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+}
+
+/* =============================================
+   ADMİN MODAL
+   ============================================= */
 .modal {
     display: none;
     position: fixed;
@@ -290,28 +326,25 @@ table button {
     font-size: 0.8rem;
 }
 
-/*TAKVİM — ETKİNLİK RENKLERİ*/
+/* =============================================
+   TAKVİM — ETKİNLİK RENKLERİ
+   ============================================= */
 .cat-event   { background-color: #0984e3 !important; border-color: #0984e3 !important; color: #fff !important; }
 .cat-holiday { background-color: #00b894 !important; border-color: #00b894 !important; color: #fff !important; }
 .cat-urgent  { background-color: #d63031 !important; border-color: #d63031 !important; color: #fff !important; }
 .cat-work    { background-color: #f9ca24 !important; border-color: #f9ca24 !important; color: #333 !important; }
 
-/*TAKVİM — GENEL DÜZELTMELER*/
+/* =============================================
+   TAKVİM — GENEL
+   ============================================= */
 .fc { height: 100% !important; }
 .fc-scrollgrid { border-radius: 10px; overflow: hidden; }
-
-/* Kaydırma çubuklarını gizle ama içeriği kesme */
 .fc-scroller { overflow: hidden !important; }
 .fc-scroller-harness { overflow: visible !important; }
-.fc-scroller-liquid-absolute {
-    position: relative !important;
-    overflow: visible !important;
-}
-
+.fc-scroller-liquid-absolute { position: relative !important; overflow: visible !important; }
 .fc-daygrid-body { width: 100% !important; }
 .fc-daygrid-day-number { font-size: 0.82rem; padding: 3px 5px !important; }
 
-/*TAKVİM — BUGÜN BUTONU*/
 .fc .fc-myToday-button {
     background: var(--main-color) !important;
     border-color: var(--main-color) !important;
@@ -321,7 +354,9 @@ table button {
 }
 .fc .fc-myToday-button:hover { filter: brightness(0.88); }
 
-/*TAKVİM — SEÇİLİ GÜN*/
+/* =============================================
+   TAKVİM — SEÇİLİ GÜN & SÜRÜKLEME
+   ============================================= */
 .fc-daygrid-day.fc-day-selected {
     background-color: rgba(var(--main-color-rgb), 0.22) !important;
 }
@@ -336,9 +371,10 @@ table button {
     font-weight: 700;
 }
 
-/*TAKVİM — SÜRÜKLEME*/
 .fc-daygrid-day.fc-highlight {
     background-color: rgba(var(--main-color-rgb), 0.32) !important;
+    outline: 2px solid var(--main-color) !important;
+    outline-offset: -2px !important;
 }
 .fc-daygrid-day.fc-highlight .fc-daygrid-day-number {
     background: var(--main-color) !important;
@@ -349,4 +385,85 @@ table button {
     align-items: center !important;
     justify-content: center !important;
     font-weight: 700 !important;
+}
+
+/* =============================================
+   MOBİL — TABLET (max 900px)
+   ============================================= */
+@media (max-width: 900px) {
+    body {
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .right-panel {
+        height: 60vh;
+        min-height: 320px;
+        order: 1;
+    }
+
+    /* Mobilde sol panel başta gizli */
+    .left-panel {
+        order: 2;
+        display: none;
+        max-height: none;
+        overflow: visible;
+    }
+
+    #todo-list {
+        max-height: 220px;
+    }
+
+    .settings-btn { top: 12px; right: 12px; }
+    .admin-btn    { bottom: 18px; left: 12px; }
+
+    #mobile-panel-toggle { display: flex; }
+}
+
+/* =============================================
+   MOBİL — TELEFON (max 480px)
+   ============================================= */
+@media (max-width: 480px) {
+    .main-layout { padding: 8px; gap: 10px; }
+
+    header h1 { font-size: 1.3rem; }
+
+    .right-panel {
+        height: 50vh;
+        min-height: 280px;
+        padding: 8px;
+    }
+
+    .glass { padding: 14px; border-radius: 14px; }
+
+    .date-group { flex-direction: column; }
+    .time-group { flex-direction: column; }
+
+    input[type="date"],
+    input[type="time"],
+    select {
+        font-size: 1rem; /* iOS zoom engelle */
+        padding: 10px 8px;
+    }
+
+    .todo-input-group { flex-direction: column; }
+    .todo-input-group input[type="text"] { width: 100%; }
+    .theme-bg { width: 100%; padding: 12px; font-size: 1rem; }
+
+    .fc-daygrid-day-number { font-size: 0.72rem; }
+    .fc .fc-toolbar-title  { font-size: 1rem; }
+    .fc .fc-button          { padding: 4px 7px !important; font-size: 0.75rem !important; }
+
+    .modal-content { margin: 0; width: 100%; max-height: 100vh; border-radius: 0; }
+
+    .admin-action-btn { display: block; width: 100%; margin-bottom: 8px; }
 }
