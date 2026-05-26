@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajandam</title>
     <link rel="icon" type="image/png" href="https://png.pngtree.com/png-vector/20250429/ourmid/pngtree-3d-red-calendar-icon-with-time-showing-schedule-png-image_15963428.png">
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
@@ -25,11 +25,6 @@
 
     <!-- Admin Butonu -->
     <button id="admin-toggle" class="admin-btn"><i class="fas fa-user-shield"></i></button>
-
-    <!-- Mobil: Sol paneli aç/kapat -->
-    <button id="mobile-panel-toggle" onclick="toggleMobilePanel()">
-        <i class="fas fa-plus"></i>
-    </button>
 
     <!-- Admin Modal -->
     <div id="admin-modal" class="modal">
@@ -68,14 +63,8 @@
 
     <!-- Ana Layout -->
     <div class="main-layout">
-
-        <!-- Sağ Panel: Takvim (mobilde üstte) -->
-        <div class="right-panel glass">
-            <div id="calendar"></div>
-        </div>
-
-        <!-- Sol Panel: Form (mobilde altta, toggle ile açılır) -->
-        <div class="left-panel glass" id="left-panel">
+        <!-- Sol Panel -->
+        <div class="left-panel glass">
             <header>
                 <h1>Ajandam</h1>
                 <p id="current-date"></p>
@@ -118,6 +107,10 @@
             </section>
         </div>
 
+        <!-- Sağ Panel: Takvim -->
+        <div class="right-panel glass">
+            <div id="calendar"></div>
+        </div>
     </div>
 
     <!-- Kütüphaneler -->

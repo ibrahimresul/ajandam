@@ -1,6 +1,4 @@
-// =============================================
 // FIREBASE
-// =============================================
 const firebaseConfig = {
     apiKey: "AIzaSyA4DX7T4255L583OKWr0_rK8qQsW62bN_k",
     authDomain: "ajandam2.firebaseapp.com",
@@ -14,10 +12,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const eventsCol = db.collection("events");
-
-// =============================================
-// YARDIMCI
-// =============================================
 function parseDate(str) {
     const [y, m, d] = str.split('-').map(Number);
     return new Date(y, m - 1, d);
@@ -27,17 +21,10 @@ function toStr(date) {
         String(date.getMonth() + 1).padStart(2, '0') + '-' +
         String(date.getDate()).padStart(2, '0');
 }
-
-// =============================================
-// GLOBAL
-// =============================================
 let cal;
 let selDate = toStr(new Date());
 let fbConnected = false;
-
-// =============================================
 // BAŞLANGIÇ
-// =============================================
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('start-date').value = selDate;
     document.getElementById('end-date').value   = selDate;
@@ -60,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         customButtons: {
             myToday: {
-                text: 'bugün',
+                text: 'Bugün',
                 click() {
                     cal.today();
                     const s = toStr(new Date());
@@ -78,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
-        // Fare basılı sürükleyince aralık seç
         select(info) {
             const start = info.startStr.split('T')[0];
             const fcEnd = parseDate(info.endStr.split('T')[0]);
@@ -113,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
             refreshList();
         },
 
-        // Tek güne tıklama
         dateClick(info) {
             document.querySelectorAll('.fc-daygrid-day').forEach(e => e.classList.remove('fc-day-selected'));
             info.dayEl.classList.add('fc-day-selected');
@@ -127,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
             refreshList();
         },
 
-        // Etkinliğe tıklayınca sil
         eventClick(info) {
             if (!confirm('Bu etkinliği silmek istiyor musunuz?')) return;
             const fid = info.event.extendedProps.firebaseId;
@@ -142,13 +126,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cal.render();
 
-    // Fare tekerleği → ay değiştir
     calEl.addEventListener('wheel', e => {
         e.preventDefault();
         e.deltaY > 0 ? cal.next() : cal.prev();
     }, { passive: false });
 
-    // Bugünü otomatik seç
     setTimeout(() => {
         document.querySelector('.fc-day-today')?.classList.add('fc-day-selected');
         document.getElementById('selected-day-label').innerText =
@@ -160,10 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTheme(localStorage.getItem('aj_theme') || 'ocean');
     connectFB();
 });
-
-// =============================================
-// FIREBASE BAĞLANTI
-// =============================================
+// FIREBASE
 function connectFB() {
     setStatus('connecting');
     try {
@@ -216,10 +195,6 @@ async function clearFB() {
     snap.forEach(d => batch.delete(d.ref));
     await batch.commit();
 }
-
-// =============================================
-// LOCALSTORAGE
-// =============================================
 function saveLoc() {
     localStorage.setItem('aj_events', JSON.stringify(
         cal.getEvents().map(e => ({
@@ -240,10 +215,7 @@ function loadLoc() {
     }));
     refreshList();
 }
-
-// =============================================
-// ETKİNLİK EKLE
-// =============================================
+// ETKİNLİK
 async function addTodo() {
     const title = document.getElementById('todo-input').value.trim();
     const cat   = document.getElementById('event-category').value;
@@ -283,10 +255,7 @@ async function addTodo() {
 
     document.getElementById('todo-input').value = '';
 }
-
-// =============================================
 // SOL LİSTE
-// =============================================
 function refreshList() {
     const ul = document.getElementById('todo-list');
     ul.innerHTML = '';
@@ -330,10 +299,7 @@ function removeEv(id, isFid) {
     if (fid) delFB(fid);
     refreshList();
 }
-
-// =============================================
 // PANEL KONTROL
-// =============================================
 function setupPanels() {
     const sBtn  = document.getElementById('settings-toggle');
     const sPanel= document.getElementById('settings-panel');
@@ -362,9 +328,7 @@ function setTheme(t) {
     document.getElementById('settings-panel').classList.remove('active');
 }
 
-// =============================================
 // ADMİN
-// =============================================
 const CAT = { event:'🎉 Etkinlik', urgent:'🔥 Önemli', holiday:'🏖️ Tatil', work:'💼 İş' };
 
 function loadAdminTable() {
@@ -415,37 +379,6 @@ async function clearAllData() {
         location.reload();
     } catch(e) { alert('Hata: ' + e.message); }
 }
-
-// =============================================
-// MOBİL PANEL TOGGLE
-// =============================================
-function toggleMobilePanel() {
-    const panel = document.getElementById('left-panel');
-    const btn   = document.getElementById('mobile-panel-toggle');
-    const isOpen = panel.style.display === 'flex' || panel.style.display === '';
-
-    if (window.innerWidth <= 900) {
-        if (panel.classList.contains('mobile-open')) {
-            panel.classList.remove('mobile-open');
-            panel.style.display = 'none';
-            btn.innerHTML = '<i class="fas fa-plus"></i>';
-        } else {
-            panel.classList.add('mobile-open');
-            panel.style.display = 'flex';
-            btn.innerHTML = '<i class="fas fa-times"></i>';
-        }
-    }
-}
-
-// Ekran boyutu değişince paneli sıfırla
-window.addEventListener('resize', () => {
-    const panel = document.getElementById('left-panel');
-    if (window.innerWidth > 900) {
-        panel.style.display = '';
-        panel.classList.remove('mobile-open');
-        document.getElementById('mobile-panel-toggle').innerHTML = '<i class="fas fa-plus"></i>';
-    }
-});
 
 function setStatus(s) {
     const dot  = document.getElementById('status-dot');
